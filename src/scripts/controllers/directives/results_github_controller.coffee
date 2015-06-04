@@ -11,9 +11,11 @@ class ResultsGithub extends Controller
     do @set_listeners
 
   declare_scope_vars: ->
-
+    
   define_template_methods: ->
 
   set_listeners: ->
     @$rootScope.$on 'GithubSearchDone', (event, result) =>
-      console.log result
+      @$scope.results = {}
+      @$scope.results.users = result.users
+      @$scope.results.repos = result.repos

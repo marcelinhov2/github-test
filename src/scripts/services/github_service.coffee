@@ -4,14 +4,16 @@ class Github extends Service
     githubAPIService
   ) ->
     return {
-      users_search: (value) ->
+      get: (data) ->
         deferred = do $q.defer
 
-        search_users = githubAPIService.search_users({
-          value: value  
+        get = githubAPIService.get({
+          service: data.service
+          value: data.value
+          repo: data.repo
         })
         
-        search_users.$promise
+        get.$promise
           .then (response) =>
             deferred.resolve(response)
           .catch (error) =>
@@ -19,18 +21,19 @@ class Github extends Service
 
         return deferred.promise
 
-      repos_search: (value) ->
+      search: (type, value) ->
         deferred = do $q.defer
 
-        search_repos = githubAPIService.search_repos({
+        search = githubAPIService.search({
+          type: type  
           value: value  
         })
-
-        search_repos.$promise
+        
+        search.$promise
           .then (response) =>
             deferred.resolve(response)
           .catch (error) =>
-            deferred.reject(error)
+            deferred.reject(error.status)
 
         return deferred.promise
 
@@ -39,7 +42,7 @@ class Github extends Service
 
         deferred = do $q.defer
 
-        @users_search(value)
+        @search('users', value)
           .then (result) =>
             full_response.orgs = _.filter result.items, {type: 'Organization'}
             full_response.users = _.filter result.items, {type: 'User'}
@@ -47,7 +50,7 @@ class Github extends Service
             full_response.error = error 
             deferred.reject(full_response)
 
-          @repos_search(value)
+          @search('repositories', value)
             .then (result) =>
               full_response.repos = result.items
               deferred.resolve(full_response)

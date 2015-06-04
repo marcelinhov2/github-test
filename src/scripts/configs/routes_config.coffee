@@ -4,6 +4,11 @@ class Routes extends Config
       .when '/',
         controller: 'homeController'
         templateUrl: '/partials/views/home.html'
+
+      .when '/infos/:service/:value/:repo?',
+        controller: 'infosController'
+        templateUrl: '/partials/views/infos.html'
+      
       .otherwise
         redirectTo: '/'
 

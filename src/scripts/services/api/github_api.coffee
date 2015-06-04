@@ -4,17 +4,17 @@ class GithubAPI extends Service
   ) ->
     base_url = "https://api.github.com/"
 
-    github = @$resource(base_url + "search", {},
-      search_users:
+    github = @$resource(base_url, {},
+      search:
         method: 'GET'
-        url: base_url + "search/users?q=:value"
+        url: base_url + "search/:type?q=:value"
 
-      search_repos:
+      get:
         method: 'GET'
-        url: base_url + "search/repositories?q=:value"
+        url: base_url + ":service/:value/:repo"
     )
 
     return {
-      search_users: github.search_users
-      search_repos: github.search_repos
+      search: github.search
+      get: github.get
     }

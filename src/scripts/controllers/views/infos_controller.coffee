@@ -22,7 +22,3 @@ class Infos extends Controller
         console.log '--------------------'
         console.log @$scope.result
         console.log '--------------------'
-      .catch (error) =>
-        console.log '********************'
-        console.log error
-        console.log '********************'

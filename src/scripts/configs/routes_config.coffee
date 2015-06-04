@@ -11,7 +11,8 @@ class Routes extends Config
 
       .when '/infos/:service/:value/:repo?',
         controller: 'infosController'
-        templateUrl: '/partials/views/infos.html'
+        templateUrl: ($routeParams) ->
+          return "/partials/views/infos/#{$routeParams.service}.html"
       
       .otherwise
         redirectTo: '/'

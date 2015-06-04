@@ -1,0 +1,13 @@
+#orgs(ng-if="result")
+  .org(ng-if="result.orgs.org")
+    .org-container
+      h2 ORGANIZATION
+      p {{result.orgs.org.html_url}}
+
+    .members-container
+      h2 MEMBERS
+      p {{result.orgs.members}}
+
+    .repos-container
+      h2 REPOS
+      p {{result.orgs.repos}}

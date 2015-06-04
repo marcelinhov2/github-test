@@ -1,0 +1,17 @@
+#repos(ng-if="result")
+  .repo(ng-if="result.repos.repo")
+    .repo-container
+      h2 REPOSITORY
+      p {{result.repos.repo}}
+
+    .pull_requests-container
+      h2 PULL REQUESTS
+      p {{result.repos.pull_requests}}
+
+    .commits-container
+      h2 COMMITS
+      p {{result.repos.commits}}
+
+    .issues-container
+      h2 ISSUES
+      p {{result.repos.issues}}

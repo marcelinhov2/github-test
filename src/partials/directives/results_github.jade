@@ -1,11 +1,11 @@
-#results(ng-if="results")
-  #users(ng-if="results.users.total_count")
+.results(ng-if="results")
+  .users(ng-if="results.users.total_count")
     h2 Total de usuários: {{results.users.total_count}}
     ul
       li(ng-repeat="user in results.users.items track by user.id")
         {{user}}
 
-  #repos(ng-if="results.repos.total_count")
+  .repos(ng-if="results.repos.total_count")
     h2 Total de repositórios: {{results.repos.total_count}}
     ul
       li(ng-repeat="repo in results.repos.items track by repo.id")

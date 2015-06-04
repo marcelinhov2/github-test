@@ -14,17 +14,57 @@
 
   .user(ng-if="result.users.user")
     .user-container
-      h2 USER
-      p {{result.users.user.login}}
+      .sidebar
+        .basic-info
+          img(src="{{result.users.user.avatar_url}}", alt="")
+          h2 {{result.users.user.name}}
+          h3 {{result.users.user.login}}
 
-    .repos-container
-      h2 REPOS
-      p {{result.users.repos}}
+        .additional-info
+          ul
+            li.location Location: {{result.users.user.location}}
+            li.email Email: {{result.users.user.email}}
+            li.blog URL: {{result.users.user.blog}}
+            li.created_at Joined: {{result.users.user.created_at | date:'dd/MM/yyyy'}}
 
-    .followers-container
-      h2 FOLLOWERS
-      p {{result.users.followers}}
+        .more-info
+          ul
+            li.followers Followers: {{result.users.user.followers}}
+            li.public_repos Public Repos: {{result.users.user.public_repos}}
+            li.following Following: {{result.users.user.following}}
 
+      .main-content
+        .repos-container
+          h2 Repositories
+
+          .repos-menu
+            ul
+              li
+                a Owner
+              li
+                a Forks
+
+          .repos-list
+            ul
+              li(ng-repeat="repo in result.users.repos track by repo.id")  
+                .repo-info
+                  h3 {{repo.name}} ( {{repo.full_name}} )
+                  h4 {{repo.description}}
+                  ul
+                    li.default_branch {{repo.default_branch}}
+                    li.last_update {{repo.updated_at}}
+                    li.forks_count {{repo.forks_count}}
+                    li.watchers_count {{repo.watchers_count}}
+
+        .followers-container
+          h2 Followers
+          
+          .followers-list
+            ul
+              li(ng-repeat="follower in result.users.followers track by follower.id")  
+                .basic-info
+                  img(src="{{follower.avatar_url}}", alt="")
+                  h2 {{follower.login}}
 
   .repo(ng-if="result.repos.repo")
     .repo-container

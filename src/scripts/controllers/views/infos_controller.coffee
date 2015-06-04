@@ -9,7 +9,7 @@ class Infos extends Controller
     do @get
 
   get: ->
-    get = @githubService.get(
+    get = @githubService['get_' + @$routeParams.service](
       service: @$routeParams.service
       value: @$routeParams.value
       repo: @$routeParams.repo

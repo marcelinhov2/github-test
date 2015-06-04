@@ -4,9 +4,6 @@ class Routes extends Config
       .when '/',
         controller: 'homeController'
         templateUrl: '/partials/views/home.html'
-      .when '/internal',
-        controller: 'internalController'
-        templateUrl: '/partials/views/internal.html'
       .otherwise
         redirectTo: '/'
 

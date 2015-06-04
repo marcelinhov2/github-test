@@ -1,6 +1,7 @@
-class Search extends Controller
+class SearchGithub extends Controller
   constructor: (
     @$scope
+    @$rootScope
     @$timeout
     @githubService
   ) -> do @init
@@ -26,4 +27,4 @@ class Search extends Controller
   search: (value) =>
     full_search = @githubService.full_search(value)
     full_search.then (result) =>
-      console.log result
+      @$rootScope.$broadcast "GithubSearchDone", result

@@ -3,19 +3,25 @@
     h2 Total de organizações: {{results.orgs.length}}
     ul
       li(ng-repeat="org in results.orgs track by org.id")
-        {{org}}
+        img(ng-src="{{org.avatar_url}}")
+        h3 
+          a(ng-href="/orgs/{{org.id}}") {{org.login}}
 
   .users(ng-if="results.users.length")
     h2 Total de usuários: {{results.users.length}}
     ul
       li(ng-repeat="user in results.users track by user.id")
-        {{user}}
+        img(ng-src="{{user.avatar_url}}")
+        h3 
+          a(ng-href="/users/{{user.login}}") {{user.login}}
 
   .repos(ng-if="results.repos.length")
     h2 Total de repositórios: {{results.repos.length}}
     ul
       li(ng-repeat="repo in results.repos track by repo.id")
-        {{repo}}
+        img(ng-src="{{repo.owner.avatar_url}}")
+        h3 
+          a(ng-href="/repos/{{repo.owner.login}}/{{repo.id}}") {{repo.full_name}}
 
   .error(ng-if="results.error")
     h2 Alguma coisa deu errado, tente novamente!

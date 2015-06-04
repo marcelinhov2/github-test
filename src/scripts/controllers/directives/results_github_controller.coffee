@@ -16,6 +16,4 @@ class ResultsGithub extends Controller
 
   set_listeners: ->
     @$rootScope.$on 'GithubSearchDone', (event, result) =>
-      @$scope.results = {}
-      @$scope.results.users = result.users
-      @$scope.results.repos = result.repos
+      @$scope.results = result

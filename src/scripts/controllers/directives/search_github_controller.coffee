@@ -26,5 +26,9 @@ class SearchGithub extends Controller
       
   search: (value) =>
     full_search = @githubService.full_search(value)
-    full_search.then (result) =>
-      @$rootScope.$broadcast "GithubSearchDone", result
+    
+    full_search
+      .then (result) =>
+        @$rootScope.$broadcast "GithubSearchDone", result
+      .catch (error) =>
+        @$rootScope.$broadcast "GithubSearchDone", error

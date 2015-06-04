@@ -1,12 +1,21 @@
 .results(ng-if="results")
-  .users(ng-if="results.users.total_count")
-    h2 Total de usuários: {{results.users.total_count}}
+  .orgs(ng-if="results.orgs.length")
+    h2 Total de organizações: {{results.orgs.length}}
     ul
-      li(ng-repeat="user in results.users.items track by user.id")
+      li(ng-repeat="org in results.orgs track by org.id")
+        {{org}}
+
+  .users(ng-if="results.users.length")
+    h2 Total de usuários: {{results.users.length}}
+    ul
+      li(ng-repeat="user in results.users track by user.id")
         {{user}}
 
-  .repos(ng-if="results.repos.total_count")
-    h2 Total de repositórios: {{results.repos.total_count}}
+  .repos(ng-if="results.repos.length")
+    h2 Total de repositórios: {{results.repos.length}}
     ul
-      li(ng-repeat="repo in results.repos.items track by repo.id")
+      li(ng-repeat="repo in results.repos track by repo.id")
         {{repo}}
+
+  .error(ng-if="results.error")
+    h2 Alguma coisa deu errado, tente novamente!

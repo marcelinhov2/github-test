@@ -29,7 +29,6 @@ class SearchGithub extends Controller
     
     full_search
       .then (result) =>
-        console.log result
         @$rootScope.$broadcast "GithubSearchDone", result
       .catch (error) =>
         @$rootScope.$broadcast "GithubSearchDone", error

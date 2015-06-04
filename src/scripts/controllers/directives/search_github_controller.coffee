@@ -3,7 +3,7 @@ class SearchGithub extends Controller
     @$scope
     @$rootScope
     @$timeout
-    @githubService
+    @githubSearchService
   ) -> do @init
     
   init: =>
@@ -25,7 +25,7 @@ class SearchGithub extends Controller
     , 500)
       
   search: (value) =>
-    full_search = @githubService.full_search(value)
+    full_search = @githubSearchService.full_search(value)
     
     full_search
       .then (result) =>

@@ -1,5 +1,9 @@
 class Routes extends Config
-  constructor: ($routeProvider, $locationProvider) ->
+  constructor: (
+    $routeProvider
+    $httpProvider
+    $locationProvider
+  ) ->
       $routeProvider
       .when '/',
         controller: 'homeController'
@@ -13,3 +17,4 @@ class Routes extends Config
         redirectTo: '/'
 
       $locationProvider.html5Mode true
+      $httpProvider.interceptors.push('HttpRequestInterceptor');

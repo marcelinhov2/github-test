@@ -2,20 +2,20 @@ class Infos extends Controller
   constructor: (
     @$scope
     @$routeParams
-    @githubService
+    @githubAPIService
   ) -> do @init
 
   init: ->
     do @get
 
   get: ->
-    get = @githubService['get_' + @$routeParams.service](
+    get = @githubAPIService.get(
       service: @$routeParams.service
       value: @$routeParams.value
       repo: @$routeParams.repo
     )
 
-    get
+    get.$promise
       .then (result) =>
         @$scope.result = {}
         @$scope.result[@$routeParams.service] = result

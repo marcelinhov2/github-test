@@ -6,7 +6,6 @@ class Infos extends Controller
   ) -> do @init
 
   init: ->
-    console.log @$routeParams
     do @get
 
   get: ->
@@ -18,8 +17,10 @@ class Infos extends Controller
 
     get
       .then (result) =>
+        @$scope.result = {}
+        @$scope.result[@$routeParams.service] = result
         console.log '--------------------'
-        console.log result
+        console.log @$scope.result
         console.log '--------------------'
       .catch (error) =>
         console.log '********************'

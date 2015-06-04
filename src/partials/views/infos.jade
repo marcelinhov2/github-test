@@ -1,0 +1,44 @@
+#infos(ng-if="result")
+  .org(ng-if="result.orgs.org")
+    .org-container
+      h2 ORGANIZATION
+      p {{result.orgs.org.html_url}}
+
+    .members-container
+      h2 MEMBERS
+      p {{result.orgs.members}}
+
+    .repos-container
+      h2 REPOS
+      p {{result.orgs.repos}}
+
+  .user(ng-if="result.users.user")
+    .user-container
+      h2 USER
+      p {{result.users.user.login}}
+
+    .repos-container
+      h2 REPOS
+      p {{result.users.repos}}
+
+    .followers-container
+      h2 FOLLOWERS
+      p {{result.users.followers}}
+
+
+  .repo(ng-if="result.repos.repo")
+    .repo-container
+      h2 REPOSITORY
+      p {{result.repos.repo}}
+
+    .pull_requests-container
+      h2 PULL REQUESTS
+      p {{result.repos.pull_requests}}
+
+    .commits-container
+      h2 COMMITS
+      p {{result.repos.commits}}
+
+    .issues-container
+      h2 ISSUES
+      p {{result.repos.issues}}

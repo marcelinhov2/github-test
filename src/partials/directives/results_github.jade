@@ -1,27 +1,27 @@
 .results(ng-if="results")
-  .orgs(ng-if="results.orgs.length")
+  .orgs.blankslate.margin-top-20(ng-if="results.orgs.length")
     h2 Total de organizações: {{results.orgs.length}}
     ul
       li(ng-repeat="org in results.orgs track by org.id")
-        img(ng-src="{{org.avatar_url}}")
-        h3 
-          a(ng-href="/infos/orgs/{{org.login}}", target="_blank") {{org.login}}
+        a(ng-href="/infos/orgs/{{org.login}}", target="_blank")
+          img(ng-src="{{org.avatar_url}}")
+          h3.css-truncate {{org.login}}
 
-  .users(ng-if="results.users.length")
+  .users.blankslate.margin-top-20(ng-if="results.users.length")
     h2 Total de usuários: {{results.users.length}}
     ul
       li(ng-repeat="user in results.users track by user.id")
-        img(ng-src="{{user.avatar_url}}")
-        h3 
-          a(ng-href="/infos/users/{{user.login}}", target="_blank") {{user.login}}
+        a(ng-href="/infos/users/{{user.login}}", target="_blank")
+          img(ng-src="{{user.avatar_url}}")
+          h3.css-truncate {{user.login}}
 
-  .repos(ng-if="results.repos.length")
+  .repos.blankslate.margin-top-20(ng-if="results.repos.length")
     h2 Total de repositórios: {{results.repos.length}}
     ul
       li(ng-repeat="repo in results.repos track by repo.id")
-        img(ng-src="{{repo.owner.avatar_url}}")
-        h3 
-          a(ng-href="/infos/repos/{{repo.owner.login}}/{{repo.name}}", target="_blank") {{repo.full_name}}
+        a(ng-href="/infos/repos/{{repo.owner.login}}/{{repo.name}}", target="_blank")
+          img(ng-src="{{repo.owner.avatar_url}}")
+          h3.css-truncate {{repo.full_name}}
 
   .error(ng-if="results.error")
     h2 Alguma coisa deu errado, tente novamente!

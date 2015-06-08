@@ -27,7 +27,7 @@
           .repos-menu
             ul
               li
-                a Owner
+                a Sources
               li
                 a Forks
 
@@ -51,4 +51,5 @@
               li(ng-repeat="follower in result.users.followers track by follower.id")  
                 .basic-info
                   img(src="{{follower.avatar_url}}", alt="")
-                  h2 {{follower.login}}
+                  h2 
+                    a(ng-href="{{follower.html_url}}") {{follower.login}}

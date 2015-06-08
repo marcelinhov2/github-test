@@ -56,7 +56,7 @@ gulp.task 'scripts', ->
 
 gulp.task 'styles', ->
   gulp.src paths.styles
-    .pipe stylus()
+    .pipe(stylus('include css': true))
     .pipe gulp.dest "#{folder}/styles"
 
 gulp.task 'styles:reload', ->

@@ -1,17 +1,27 @@
 #repos(ng-if="result")
   .repo(ng-if="result.repos.repo")
     .repo-container
-      h2 REPOSITORY
-      p {{result.repos.repo}}
+      h2 {{result.repos.repo.name}}
+      ul
+        li Forks: {{result.repos.repo.forks_count}}
+        li Stars: {{result.repos.repo.stargazers_count}}
+        li Watchers: {{result.repos.repo.watchers_count}}
+
 
     .pull_requests-container
       h2 PULL REQUESTS
-      p {{result.repos.pull_requests}}
+      ul
+        li(ng-repeat="pr in result.repos.pull_requests track by pr.id")  
+          .basic-info
+            h2 {{pr.title}}
+            p 
+              span #
+              | {{pr.number}} - {{pr.head.user.login}}
 
     .commits-container
       h2 COMMITS
-      p {{result.repos.commits}}
-
-    .issues-container
-      h2 ISSUES
-      p {{result.repos.issues}}
+      ul
+        li(ng-repeat="commit in result.repos.commits track by commit.sha")  
+          .basic-info
+            h2 {{commit.commit.message}}
+            p {{commit.committer.login}}

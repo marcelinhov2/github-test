@@ -6,7 +6,6 @@ class Routes extends Config
   ) ->
       $routeProvider
       .when '/',
-        controller: 'homeController'
         templateUrl: '/partials/views/home.html'
 
       .when '/infos/:service/:value/:repo?',

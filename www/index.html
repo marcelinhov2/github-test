@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <base href="/">
+    <title>Github Test</title>
+    <!-- inject:css -->
+    <link rel="stylesheet" href="styles/app.css">
+    <!-- endinject -->
+  </head>
+  <body ng-app="app" ng-controller="appController">
+    <div id="wrap">
+      <header class="masthead">
+        <div class="container"><a href="/">Home</a></div>
+      </header>
+      <div class="container">
+        <ng-view id="ng_view"></ng-view>
+      </div>
+    </div>
+    <!-- inject:js -->
+    <script src="scripts/dependencies.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/templates.js"></script>
+    <script src="scripts/configs/routes_config.js"></script>
+    <script src="scripts/controllers/app_controller.js"></script>
+    <script src="scripts/directives/results_github_directive.js"></script>
+    <script src="scripts/directives/search_github_directive.js"></script>
+    <script src="scripts/factories/http_request_interceptor_factory.js"></script>
+    <script src="scripts/services/github_service.js"></script>
+    <script src="scripts/controllers/directives/results_github_controller.js"></script>
+    <script src="scripts/controllers/directives/search_github_controller.js"></script>
+    <script src="scripts/controllers/views/infos_controller.js"></script>
+    <script src="scripts/services/api/github_api.js"></script>
+    <!-- endinject -->
+  </body>
+</html>

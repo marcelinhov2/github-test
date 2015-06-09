@@ -1,7 +1,7 @@
 #users(ng-if="result")
-  .user(ng-if="result.users.user")
-    .user-container
-      .sidebar
+  .user.container(ng-if="result.users.user")
+    .user-container.columns
+      .sidebar.one-fourth.column
         .basic-info
           img(src="{{result.users.user.avatar_url}}", alt="")
           h2 {{result.users.user.name}}
@@ -9,9 +9,9 @@
 
         .additional-info
           ul
-            li.location Location: {{result.users.user.location}}
-            li.email Email: {{result.users.user.email}}
-            li.blog URL: {{result.users.user.blog}}
+            li.location {{result.users.user.location}}
+            li.email {{result.users.user.email}}
+            li.blog {{result.users.user.blog}}
             li.created_at Joined: {{result.users.user.created_at | date:'dd/MM/yyyy'}}
 
         .more-info
@@ -20,7 +20,18 @@
             li.public_repos Public Repos: {{result.users.user.public_repos}}
             li.following Following: {{result.users.user.following}}
 
-      .main-content
+        .followers-container
+          h2 Followers
+          
+          .followers-list
+            ul
+              li(ng-repeat="follower in result.users.followers track by follower.id")  
+                .basic-info
+                  img(src="{{follower.avatar_url}}", alt="")
+                  h2 
+                    a(ng-href="{{follower.html_url}}") {{follower.login}}
+
+      .main-content.three-fourths.column
         .repos-container
           h2 Repositories
 
@@ -39,17 +50,6 @@
                   h4 {{repo.description}}
                   ul
                     li.default_branch {{repo.default_branch}}
-                    li.last_update {{repo.updated_at}}
-                    li.forks_count {{repo.forks_count}}
-                    li.watchers_count {{repo.watchers_count}}
-
-        .followers-container
-          h2 Followers
-          
-          .followers-list
-            ul
-              li(ng-repeat="follower in result.users.followers track by follower.id")  
-                .basic-info
-                  img(src="{{follower.avatar_url}}", alt="")
-                  h2 
-                    a(ng-href="{{follower.html_url}}") {{follower.login}}
+                    li.last_update {{repo.updated_at | date:'dd/MM/yyyy'}}
+                    li.forks_count Forks: {{repo.forks_count}}
+                    li.watchers_count Watchers: {{repo.watchers_count}}

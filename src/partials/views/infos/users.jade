@@ -13,7 +13,7 @@
             li.email
               a(ng-href="mailto:{{result.users.user.email}}") {{result.users.user.email}}
             li.blog 
-              a(ng-href="{{result.users.user.blog}}", target="_blank"){{result.users.user.blog}}
+              a(ng-href="{{result.users.user.blog}}", target="_blank") {{result.users.user.blog}}
             li.created_at Joined: {{result.users.user.created_at | date:'dd/MM/yyyy'}}
 
         .more-info

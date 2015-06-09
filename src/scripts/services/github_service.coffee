@@ -7,18 +7,27 @@ class Github extends Service
       get_users: (value) ->
         deferred = do $q.defer
 
+        repos = githubAPIService.list_user_repos(
+          username: value.value
+        )
+
+        user = githubAPIService.get(
+          service: value.service
+          value: value.value
+          repo: value.repo
+        )
+
+        followers = githubAPIService.list_followers(
+          username: value.value
+        )
+
         $q.all(
-          user: githubAPIService.get(
-            service: value.service
-            value: value.value
-            repo: value.repo
-          )
-          followers: githubAPIService.list_followers(
-            username: value.value
-          )
-          repos: githubAPIService.list_user_repos(
-            username: value.value
-          )
+          user: user.$promise.then (result) ->
+            return result
+          followers: followers.$promise.then (result) ->
+            return result
+          repos: repos.$promise.then (result) ->
+            return result
         )
 
         .then (result) ->
@@ -31,18 +40,27 @@ class Github extends Service
       get_orgs: (value) ->
         deferred = do $q.defer
 
+        org = githubAPIService.get(
+          service: value.service
+          value: value.value
+          repo: value.repo
+        )
+
+        members = githubAPIService.members_list(
+          org: value.value
+        )
+
+        repos = githubAPIService.list_org_repos(
+          org: value.value
+        )
+
         $q.all(
-          org: githubAPIService.get(
-            service: value.service
-            value: value.value
-            repo: value.repo
-          )
-          members: githubAPIService.members_list(
-            org: value.value
-          )
-          repos: githubAPIService.list_org_repos(
-            org: value.value
-          )
+          org: org.$promise.then (result) ->
+            return result
+          members: members.$promise.then (result) ->
+            return result
+          repos: repos.$promise.then (result) ->
+            return result
         )
 
         .then (result) ->
@@ -55,24 +73,36 @@ class Github extends Service
       get_repos: (value) ->
         deferred = do $q.defer
 
+        repo = githubAPIService.get(
+          service: value.service
+          value: value.value
+          repo: value.repo
+        )
+
+        pull_requests = githubAPIService.list_pull_requests(
+          owner: value.value
+          repo: value.repo
+        )
+
+        issues = githubAPIService.list_issues(
+          owner: value.value
+          repo: value.repo
+        )
+
+        commits = githubAPIService.list_commits(
+          owner: value.value
+          repo: value.repo
+        )
+
         $q.all(
-          repo: githubAPIService.get(
-            service: value.service
-            value: value.value
-            repo: value.repo
-          )
-          pull_requests: githubAPIService.list_pull_requests(
-            owner: value.value
-            repo: value.repo
-          )
-          issues: githubAPIService.list_issues(
-            owner: value.value
-            repo: value.repo
-          )
-          commits: githubAPIService.list_commits(
-            owner: value.value
-            repo: value.repo
-          )
+          repo: repo.$promise.then (result) ->
+            return result
+          pull_requests: pull_requests.$promise.then (result) ->
+            return result
+          issues: issues.$promise.then (result) ->
+            return result
+          commits: commits.$promise.then (result) ->
+            return result
         )
 
         .then (result) ->

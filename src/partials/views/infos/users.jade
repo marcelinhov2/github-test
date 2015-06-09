@@ -38,9 +38,13 @@
           .repos-menu
             ul
               li
-                a Sources
+                a 
+                  | Sources 
+                  span(ng-if="result", ng-init="sources = filter_by_fork(false)") {{sources}}
               li
-                a Forks
+                a 
+                  | Forks 
+                  span(ng-if="result", ng-init="forks = filter_by_fork(true)") {{forks}}
 
           .repos-list
             ul

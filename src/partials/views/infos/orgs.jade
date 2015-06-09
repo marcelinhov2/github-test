@@ -26,11 +26,12 @@
             .repos-list
               ul
                 li.blankslate.margin-top-20(ng-repeat="repo in result.orgs.repos track by repo.id")
-                  .repo-info
-                    h3 {{repo.name}} ( {{repo.full_name}} )
-                    h4 {{repo.description}}
-                    ul
-                      li.default_branch {{repo.default_branch}}
-                      li.last_update Last Commit: {{repo.updated_at | date:'dd/MM/yyyy hh:MM'}}
-                      li.forks_count Forks: {{repo.forks_count}}
-                      li.watchers_count Watchers: {{repo.watchers_count}}
+                  a(ng-href="/infos/repos/{{repo.owner.login}}/{{repo.name}}")
+                    .repo-info
+                      h3 {{repo.name}} ( {{repo.full_name}} )
+                      h4 {{repo.description}}
+                      ul
+                        li.default_branch {{repo.default_branch}}
+                        li.last_update Last Commit: {{repo.updated_at | date:'dd/MM/yyyy hh:MM'}}
+                        li.forks_count Forks: {{repo.forks_count}}
+                        li.watchers_count Watchers: {{repo.watchers_count}}

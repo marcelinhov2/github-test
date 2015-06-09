@@ -1,27 +1,42 @@
 #repos(ng-if="result")
-  .repo(ng-if="result.repos.repo")
-    .repo-container
-      h2 {{result.repos.repo.name}}
-      ul
-        li Forks: {{result.repos.repo.forks_count}}
-        li Stars: {{result.repos.repo.stargazers_count}}
-        li Watchers: {{result.repos.repo.watchers_count}}
+  .repo.container(ng-if="result.repos.repo")
+    .repo-container.columns
+      .sidebar.one-fourth.column
+        .basic-info
+          div.tooltipped.tooltipped-s(aria-label="{{result.repos.repo.owner.login}}")
+            a(ng-href="{{result.repos.repo.owner.html_url}}", target="_blank")
+              img.avatar(src="{{result.repos.repo.owner.avatar_url}}", alt="", width="230", height="230")
+
+        .basic-info
+          h2 {{result.repos.repo.name}}
+          ul
+            li Forks: {{result.repos.repo.forks_count}}
+            li Stars: {{result.repos.repo.stargazers_count}}
+            li Watchers: {{result.repos.repo.watchers_count}}
 
 
-    .pull_requests-container
-      h2 PULL REQUESTS
-      ul
-        li(ng-repeat="pr in result.repos.pull_requests track by pr.id")  
-          .basic-info
-            h2 {{pr.title}}
-            p 
-              span #
-              | {{pr.number}} - {{pr.head.user.login}}
+      .main-content.three-fourths.column
+        h2 Repository
 
-    .commits-container
-      h2 COMMITS
-      ul
-        li(ng-repeat="commit in result.repos.commits track by commit.sha")  
-          .basic-info
-            h2 {{commit.commit.message}}
-            p {{commit.committer.login}}
+        .repos-menu
+          ul(ng-init='tab = 1')
+            li.inline-block(ng-class='{active:tab===1}')
+              a.btn(ng-class="{ 'btn-primary': tab===1 }", ng-click='tab = 1') Commits
+            li.inline-block(ng-class='{active:tab===2}')
+              a.btn(ng-class="{ 'btn-primary': tab===2 }", ng-click='tab = 2') Pull Requests
+
+        .commits-container(ng-show="tab === 1")
+          ul
+            li.blankslate.margin-top-20(ng-repeat="commit in result.repos.commits track by commit.sha")  
+              .basic-info
+                h2 {{commit.commit.message}}
+                p {{commit.committer.login}}
+
+        .pull_requests-container(ng-show="tab === 2")
+          ul
+            li.blankslate.margin-top-20(ng-repeat="pr in result.repos.pull_requests track by pr.id")  
+              .basic-info
+                h2 {{pr.title}}
+                p 
+                  span #
+                  | {{pr.number}} - {{pr.head.user.login}}

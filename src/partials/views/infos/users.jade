@@ -37,23 +37,27 @@
 
           .repos-menu
             ul
-              li
-                a 
+              li.inline-block
+                a.btn(ng-class="{ 'btn-primary': !is_repos_filtered }", ng-click="filter_repos_by('fork')")
+                  | All 
+                  span.counter(ng-if="result", ng-init="total_length = result.users.repos.length") {{total_length}}
+              li.inline-block
+                a.btn(ng-click="filter_repos_by('fork', false)", ng-class="{'btn-primary': is_repos_fork == false}")
                   | Sources 
-                  span(ng-if="result", ng-init="sources = filter_by_fork(false)") {{sources}}
-              li
-                a 
+                  span.counter(ng-if="result", ng-init="sources_length = get_repo_type_length('fork', false)") {{sources_length}}
+              li.inline-block
+                a.btn(ng-click="filter_repos_by('fork', true)", ng-class="{'btn-primary': is_repos_fork == true}")
                   | Forks 
-                  span(ng-if="result", ng-init="forks = filter_by_fork(true)") {{forks}}
+                  span.counter(ng-if="result", ng-init="forks_length = get_repo_type_length('fork', true)") {{forks_length}}
 
           .repos-list
             ul
-              li(ng-repeat="repo in result.users.repos track by repo.id")  
+              li.blankslate.margin-top-20(ng-repeat="repo in result.users.repos track by repo.id", ng-class="{ fork: repo.fork }")
                 .repo-info
                   h3 {{repo.name}} ( {{repo.full_name}} )
                   h4 {{repo.description}}
                   ul
                     li.default_branch {{repo.default_branch}}
-                    li.last_update {{repo.updated_at | date:'dd/MM/yyyy'}}
+                    li.last_update Last Commit: {{repo.updated_at | date:'dd/MM/yyyy hh:MM'}}
                     li.forks_count Forks: {{repo.forks_count}}
                     li.watchers_count Watchers: {{repo.watchers_count}}

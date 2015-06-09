@@ -3,7 +3,7 @@
     .user-container.columns
       .sidebar.one-fourth.column
         .basic-info
-          img(src="{{result.users.user.avatar_url}}", alt="")
+          img.avatar(src="{{result.users.user.avatar_url}}", alt="", width="230", height="230")
           h2 {{result.users.user.name}}
           h3 {{result.users.user.login}}
 
@@ -27,9 +27,7 @@
             ul
               li(ng-repeat="follower in result.users.followers track by follower.id")  
                 .basic-info
-                  img(src="{{follower.avatar_url}}", alt="")
-                  h2 
-                    a(ng-href="{{follower.html_url}}") {{follower.login}}
+                  img.avatar.tooltipped.tooltipped-n(src="{{follower.avatar_url}}", alt="", aria-label="{{follower.login}}", width="50", height="50")
 
       .main-content.three-fourths.column
         .repos-container

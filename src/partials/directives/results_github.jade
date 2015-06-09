@@ -4,7 +4,7 @@
     ul
       li(ng-repeat="org in results.orgs track by org.id")
         a(ng-href="/infos/orgs/{{org.login}}", target="_blank")
-          img(ng-src="{{org.avatar_url}}")
+          img.avatar(ng-src="{{org.avatar_url}}", width="50", height="50")
           h3.css-truncate {{org.login}}
 
   .users.blankslate.margin-top-20(ng-if="results.users.length")
@@ -12,7 +12,7 @@
     ul
       li(ng-repeat="user in results.users track by user.id")
         a(ng-href="/infos/users/{{user.login}}", target="_blank")
-          img(ng-src="{{user.avatar_url}}")
+          img.avatar(ng-src="{{user.avatar_url}}", width="50", height="50")
           h3.css-truncate {{user.login}}
 
   .repos.blankslate.margin-top-20(ng-if="results.repos.length")
@@ -20,7 +20,7 @@
     ul
       li(ng-repeat="repo in results.repos track by repo.id")
         a(ng-href="/infos/repos/{{repo.owner.login}}/{{repo.name}}", target="_blank")
-          img(ng-src="{{repo.owner.avatar_url}}")
+          img.avatar(ng-src="{{repo.owner.avatar_url}}", width="50", height="50")
           h3.css-truncate {{repo.full_name}}
 
   .error(ng-if="results.error")

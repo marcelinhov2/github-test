@@ -23,5 +23,5 @@
           img.avatar(ng-src="{{repo.owner.avatar_url}}", width="50", height="50")
           h3.css-truncate {{repo.full_name}}
 
-  .error(ng-if="results.error")
+  .error(ng-if="results.repos.length == 0 && results.users.length == 0 && results.orgs.length == 0")
     h2 Alguma coisa deu errado, tente novamente!

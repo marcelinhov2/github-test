@@ -1,35 +1,36 @@
-#orgs.container(ng-if="result")
-  .org.columns(ng-if="result.orgs.org")
-    .sidebar.one-fourth.column
-      .org-container
-        img.avatar(src="{{result.orgs.org.avatar_url}}", alt="", width="230", height="230")
+#orgs(ng-if="result")
+  .org.container(ng-if="result.orgs.org")
+    .org-container.columns
+      .sidebar.one-fourth.column
+        .org-container
+          img.avatar(src="{{result.orgs.org.avatar_url}}", alt="", width="230", height="230")
 
-        h2 {{result.orgs.org.name}}
-        p {{result.orgs.org.blog}}
+          h2 {{result.orgs.org.name}}
+          p {{result.orgs.org.blog}}
 
-      .followers-container
-        h2 MEMBERS
-        
-        .followers-list
-          ul
-            li(ng-repeat="member in result.orgs.members track by member.id")  
-              .basic-info
-                div.tooltipped.tooltipped-n(aria-label="{{member.login}}")
-                  a(ng-href="{{member.html_url}}", target="_blank")
-                    img.avatar(src="{{member.avatar_url}}", alt="", width="50", height="50")
-
-    .main-content.three-fourths.column
-      .repos-container
-          h2 Repositories
-
-          .repos-list
+        .followers-container
+          h2 MEMBERS
+          
+          .followers-list
             ul
-              li.blankslate.margin-top-20(ng-repeat="repo in result.orgs.repos track by repo.id")
-                .repo-info
-                  h3 {{repo.name}} ( {{repo.full_name}} )
-                  h4 {{repo.description}}
-                  ul
-                    li.default_branch {{repo.default_branch}}
-                    li.last_update Last Commit: {{repo.updated_at | date:'dd/MM/yyyy hh:MM'}}
-                    li.forks_count Forks: {{repo.forks_count}}
-                    li.watchers_count Watchers: {{repo.watchers_count}}
+              li(ng-repeat="member in result.orgs.members track by member.id")  
+                .basic-info
+                  div.tooltipped.tooltipped-n(aria-label="{{member.login}}")
+                    a(ng-href="{{member.html_url}}", target="_blank")
+                      img.avatar(src="{{member.avatar_url}}", alt="", width="50", height="50")
+
+      .main-content.three-fourths.column
+        .repos-container
+            h2 Repositories
+
+            .repos-list
+              ul
+                li.blankslate.margin-top-20(ng-repeat="repo in result.orgs.repos track by repo.id")
+                  .repo-info
+                    h3 {{repo.name}} ( {{repo.full_name}} )
+                    h4 {{repo.description}}
+                    ul
+                      li.default_branch {{repo.default_branch}}
+                      li.last_update Last Commit: {{repo.updated_at | date:'dd/MM/yyyy hh:MM'}}
+                      li.forks_count Forks: {{repo.forks_count}}
+                      li.watchers_count Watchers: {{repo.watchers_count}}

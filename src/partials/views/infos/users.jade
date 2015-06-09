@@ -20,7 +20,7 @@
             li.public_repos Public Repos: {{result.users.user.public_repos}}
             li.following Following: {{result.users.user.following}}
 
-        .followers-container
+        .followers-container(ng-if="result.users.followers.length")
           h2 Followers
           
           .followers-list

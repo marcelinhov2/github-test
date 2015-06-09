@@ -6,7 +6,7 @@
           img.avatar(src="{{result.orgs.org.avatar_url}}", alt="", width="230", height="230")
 
           h2 {{result.orgs.org.name}}
-          p {{result.orgs.org.blog}}
+          a(ng-href="{{result.orgs.org.blog}}", target="_blank") {{result.orgs.org.blog}}
 
         .followers-container
           h2 MEMBERS

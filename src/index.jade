@@ -9,6 +9,10 @@ html(lang="en")
     // endinject 
   body(ng-app="app" ng-controller="appController")
     #wrap
+      header.masthead
+        .container
+          a(href='/') Home
+
       .container
         ng-view(id="ng_view")
 

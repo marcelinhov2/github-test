@@ -4,7 +4,7 @@
       .sidebar.one-fourth.column
         .basic-info
           div.tooltipped.tooltipped-s(aria-label="{{result.repos.repo.owner.login}}")
-            a(ng-href="{{result.repos.repo.owner.html_url}}", target="_blank")
+            a(ng-href="/infos/users/{{result.repos.repo.owner.login}}")
               img.avatar(src="{{result.repos.repo.owner.avatar_url}}", alt="", width="230", height="230")
 
         .basic-info

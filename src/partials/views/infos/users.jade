@@ -28,7 +28,7 @@
               li(ng-repeat="follower in result.users.followers track by follower.id")  
                 .basic-info
                   div.tooltipped.tooltipped-n(aria-label="{{follower.login}}")
-                    a(ng-href="{{follower.html_url}}", target="_blank")
+                    a(ng-href="/infos/users/{{follower.login}}")
                       img.avatar(src="{{follower.avatar_url}}", alt="", width="50", height="50")
 
       .main-content.three-fourths.column

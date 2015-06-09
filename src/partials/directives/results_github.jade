@@ -3,7 +3,7 @@
     h2 Total de organizações: {{results.orgs.length}}
     ul
       li(ng-repeat="org in results.orgs track by org.id")
-        a(ng-href="/infos/orgs/{{org.login}}", target="_blank")
+        a(ng-href="/infos/orgs/{{org.login}}")
           img.avatar(ng-src="{{org.avatar_url}}", width="50", height="50")
           h3.css-truncate {{org.login}}
 
@@ -11,7 +11,7 @@
     h2 Total de usuários: {{results.users.length}}
     ul
       li(ng-repeat="user in results.users track by user.id")
-        a(ng-href="/infos/users/{{user.login}}", target="_blank")
+        a(ng-href="/infos/users/{{user.login}}")
           img.avatar(ng-src="{{user.avatar_url}}", width="50", height="50")
           h3.css-truncate {{user.login}}
 
@@ -19,7 +19,7 @@
     h2 Total de repositórios: {{results.repos.length}}
     ul
       li(ng-repeat="repo in results.repos track by repo.id")
-        a(ng-href="/infos/repos/{{repo.owner.login}}/{{repo.name}}", target="_blank")
+        a(ng-href="/infos/repos/{{repo.owner.login}}/{{repo.name}}")
           img.avatar(ng-src="{{repo.owner.avatar_url}}", width="50", height="50")
           h3.css-truncate {{repo.full_name}}
 

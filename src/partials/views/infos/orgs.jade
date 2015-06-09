@@ -16,7 +16,7 @@
               li(ng-repeat="member in result.orgs.members track by member.id")  
                 .basic-info
                   div.tooltipped.tooltipped-n(aria-label="{{member.login}}")
-                    a(ng-href="{{member.html_url}}", target="_blank")
+                    a(ng-href="/infos/users/{{member.login}}")
                       img.avatar(src="{{member.avatar_url}}", alt="", width="50", height="50")
 
       .main-content.three-fourths.column

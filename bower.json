@@ -14,7 +14,8 @@
   "dependencies": {
     "angular": "latest",
     "angular-route": "latest",
-    "angular-resource": "latest"
+    "angular-resource": "latest",
+    "lodash": "latest"
   },
   "resolutions": {
     "angular": "1.4.0"
